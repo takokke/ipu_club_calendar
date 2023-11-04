@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Crub Calendar</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-contents">
+          <div class="header-left">
+            <!--　clubとかに(crub)をかけてみよう-->
+            <h1 class="header-logo">
+              <%= link_to root_path,  "data-turbolinks": false do %>
+                <%= image_tag 'logo_transparent.png', class:"logo-img" %>
+              <% end %>
+            </h1>
+          </div>
+          <div class="header-right">
+            <ul class="header-nav">
+              <li><%= link_to "追加", new_event_path %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <%= yield %>
+      </div>
+    </main>
+    <footer>
+      
+    </footer>
+  </body>
+</html>
