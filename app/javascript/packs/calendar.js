@@ -14,9 +14,14 @@ document.addEventListener('DOMContentLoaded', function() {
     displayEventTime: false,
     height: "auto",
     eventDisplay: "block",
+    // timeGridDayのときのall-dayをなくす
+    allDaySlot: false,
     views: {
       dayGridMonth: {
         titleFormat: { year: 'numeric', month: 'numeric' },
+      },
+      timeGridDay: {
+        titleFormat: { year: 'numeric', month: 'numeric', day: 'numeric' },
       },
       listMonth: {
         titleFormat: { year: 'numeric', month: 'numeric' },
@@ -27,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     headerToolbar: {
       start: '',
       center: 'title',
-      end: 'today prev,next'
+      end: 'prev,next'
     },
     //休日を灰色にする
     // businessHours: true,
@@ -35,8 +40,11 @@ document.addEventListener('DOMContentLoaded', function() {
     events: '/events',
     navLinks: false,
     //日付の「日」の字を消す
-    dayCellContent: function(arg){ 
-    	return arg.date.getDate();
+    dayCellContent: function(arg){
+      // これをしないと、timeGridDayのとき、０時の横に余計な日付がつく
+      if (arg.view.type == 'dayGridMonth') {
+    	  return arg.date.getDate();
+      }
     },
     windowResize: function () {
       if (window.innerWidth < 991.98) {
@@ -48,10 +56,21 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     // クリック時の処理
     eventClick: function(arg) {
-    //クリックしたら詳細ページへ
-      var eventUrl = '/events/' + arg.event.id;
-      window.location.href = eventUrl;
+      // time表の時は詳細画面へ、デフォルトの状態はtime表へ
+      if (arg.view.type == "timeGridDay" ) {
+        var eventUrl = '/events/' + arg.event.id;
+        window.location.href = eventUrl;
+      } else if (arg.view.type == "dayGridMonth") {
+        calendar.gotoDate(arg.event.start);
+        calendar.changeView('timeGridDay');
+      }
     },
+    dateClick: function(info) {
+      // alert('Clicked on: ' + info.dateStr);
+      // alert('Current view: ' + info.view.type);
+      calendar.gotoDate(info.dateStr);
+      calendar.changeView('timeGridDay');
+    }
   });
 
   calendar.render();
