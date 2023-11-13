@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Club Calendar</title>
+    <title>IPU軽音予定</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -23,7 +23,16 @@
           </div>
           <div class="header-right">
             <ul class="header-nav">
+            <% if admin_signed_in? %>
+              <li>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+              </li>
               <li><%= link_to "追加", new_event_path %></li>
+            <% else %>
+              <li>
+                <%= link_to "ログイン", new_admin_session_path %>
+              </li>
+            <% end %>
             </ul>
           </div>
         </div>
@@ -31,6 +40,8 @@
     </header>
     <main>
       <div class="container">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
         <%= yield %>
       </div>
     </main>

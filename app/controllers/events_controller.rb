@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+  before_action :authenticate_admin!, except: [:show, :index]
+  
+  
   def index
     @events = Event.all
     respond_to do |format|

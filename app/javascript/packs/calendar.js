@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     plugins: [dayGridPlugin, listPlugin, timeGridPlugin, interactionPlugin],
     initialView: 'dayGridMonth',
     displayEventTime: false,
-    height: "auto",
+    height: window.innerHeight-170,
     eventDisplay: "block",
     // timeGridDayのときのall-dayをなくす
     allDaySlot: false,
@@ -46,14 +46,14 @@ document.addEventListener('DOMContentLoaded', function() {
     	  return arg.date.getDate();
       }
     },
-    windowResize: function () {
-      if (window.innerWidth < 991.98) {
-        calendar.changeView('dayGridMonth');
-        // calendar.setOption('height', 600);
-      } else {
-        calendar.changeView('dayGridMonth');
-      }
-    },
+    // windowResize: function () {
+    //   if (window.innerWidth < 991.98) {
+    //     calendar.changeView('dayGridMonth');
+    //     // calendar.setOption('height', 600);
+    //   } else {
+    //     calendar.changeView('dayGridMonth');
+    //   }
+    // },
     // クリック時の処理
     eventClick: function(arg) {
       // time表の時は詳細画面へ、デフォルトの状態はtime表へ
@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // alert('Current view: ' + info.view.type);
       calendar.gotoDate(info.dateStr);
       calendar.changeView('timeGridDay');
+      // calendar.setOption('height', window.innerHeight-170);
     }
   });
 
