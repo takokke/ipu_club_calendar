@@ -34,6 +34,11 @@ document.addEventListener('DOMContentLoaded', function() {
       center: 'title',
       end: 'prev,next'
     },
+    footerToolbar: {
+      start: 'dayGridMonth',
+      center: '',
+      end: 'timeGridDay'
+    },
     //休日を灰色にする
     // businessHours: true,
     locale: "jp",
