@@ -8,6 +8,8 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "./calendar"
+import 'jquery'
+import "./hamburger"
 
 Rails.start()
 Turbolinks.start()

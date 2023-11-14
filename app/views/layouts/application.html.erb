@@ -11,6 +11,15 @@
   </head>
 
   <body>
+    <div id="sp-menu">
+      <h2>MENU</h2>
+      <ul>
+        <li>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+        </li>
+        <li><%= link_to "予定追加", new_event_path %></li>
+      </ul>
+    </div>
     <header>
       <div class="container">
         <div class="header-contents">
@@ -23,15 +32,18 @@
           </div>
           <div class="header-right">
             <ul class="header-nav">
-            <% if admin_signed_in? %>
+            <% unless admin_signed_in? %>
               <li>
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+                <%= link_to "ログイン", new_admin_session_path, class: 'btn btn-login' %>
               </li>
-              <li><%= link_to "追加", new_event_path %></li>
             <% else %>
-              <li>
-                <%= link_to "ログイン", new_admin_session_path %>
-              </li>
+              <div id="hm-icon">
+                <a class="menu-trigger" href="#">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </a>
+              </div>
             <% end %>
             </ul>
           </div>

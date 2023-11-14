@@ -39,16 +39,44 @@
  }
 
 
-.fc-col-header-cell-cushion,
-.fc-daygrid-day-number,
-.fc-daygrid-day-top{
-    color: #333;
+.btn,
+a.btn,
+button.btn {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 4px;
+  @include mq() {
+    font-size: 12px;
+  }
+  
 }
-.fc-day-sat{
-    background-color: #cce3f6;
+
+.btn-login,
+a.btn-login {
+  color: #fff;
+  background-color: #2c3d50;
 }
-.fc-day-sun{
-    background-color: #f4d0df;
+
+.btn-login:hover,
+a.btn-login:hover {
+  color: #fff;
+  background: #385370;
 }
 
 
